@@ -1,5 +1,7 @@
 # WordPress_LAMP_Ansible
-## Ansible - This is an Ansible playbook which can be used to install Wordpress on a LAMP environment.  
+## Ansible - This is an Ansible playbook which can be used to install Wordpress on a LAMP environment. 
+
+### You may need to create a file named virtualhost.j2 with a defualt apache virtualhost entry and another file named wp-config.php.tmpl with a default WordPress wp-config entries. I have provided the model of both these files below.
 
 ```ansible
 ---
@@ -120,6 +122,55 @@
       with_items:
         - httpd
         - mariadb
+```
+
+### virtualhost.j2
+
+```
+<virtualhost *:80>
+  servername {{ domain }}
+  documentroot /var/www/html/{{domain}}
+  directoryindex index.php index.html info.html info.php
+</virtualhost>
+```
+
+### wp-config.php.tmpl
+
+```
+<?php
+
+define( 'DB_NAME', '{{ mysql_database }}' );
+
+define( 'DB_USER', '{{ mysql_user }}' );
+
+define( 'DB_PASSWORD', '{{ mysql_password }}' );
+
+define( 'DB_HOST', 'localhost' );
+
+define( 'DB_CHARSET', 'utf8' );
+
+define( 'DB_COLLATE', '' );
+
+
+define( 'AUTH_KEY',         'put your unique phrase here' );
+define( 'SECURE_AUTH_KEY',  'put your unique phrase here' );
+define( 'LOGGED_IN_KEY',    'put your unique phrase here' );
+define( 'NONCE_KEY',        'put your unique phrase here' );
+define( 'AUTH_SALT',        'put your unique phrase here' );
+define( 'SECURE_AUTH_SALT', 'put your unique phrase here' );
+define( 'LOGGED_IN_SALT',   'put your unique phrase here' );
+define( 'NONCE_SALT',       'put your unique phrase here' );
+
+
+$table_prefix = 'wp_';
+
+define( 'WP_DEBUG', false );
+
+if ( ! defined( 'ABSPATH' ) ) {
+	define( 'ABSPATH', dirname( __FILE__ ) . '/' );
+}
+
+require_once( ABSPATH . 'wp-settings.php' );
 ```
 
 ## You can call the domain using /etc/hosts file after running this playbook to get the WordPress install screen.
