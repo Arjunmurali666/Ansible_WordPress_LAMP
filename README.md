@@ -1,5 +1,5 @@
 # WordPress_LAMP_Ansible
-## Ansible - This is a Ansible playbook which can be used to install and configure Wordpress on a LAMP environment.  
+## Ansible - This is an Ansible playbook which can be used to install Wordpress on a LAMP environment.  
 
 ```ansible
 ---
