@@ -1,7 +1,7 @@
 # WordPress_LAMP_Ansible
 ## Ansible - This is an Ansible playbook which can be used to install Wordpress on a LAMP environment. 
 
-### You may need to create a file named virtualhost.j2 with a defualt apache virtualhost entry and another file named wp-config.php.tmpl with a default WordPress wp-config entries. I have provided the model of both these files below.
+### You may need to create a file named virtualhost.j2 with a default apache virtualhost entry and another file named wp-config.php.tmpl with a default WordPress wp-config entries. I have provided the model of both these files below.
 
 ```ansible
 ---
